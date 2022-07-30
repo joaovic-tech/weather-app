@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="shortcut icon"
+      href="/assets/svg/weather-app.svg"
+      type="image/svg"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <title>weather-app</title>
+    <script
+      src="https://kit.fontawesome.com/673aed7dea.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="flex gap">
+      <div class="icon-logo">
+        <img src="/assets/svg/weather-app.svg" alt="logo" />
+      </div>
+      <h1>Weather-app</h1>
+    </nav>
+    <main>
+      <section class="flex">
+        <form class="flex">
+          <div class="style-input">
+            <input type="text" placeholder="Search" id="name-city"></input>
+            <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </form>
+      </section>
+      <section id="container" class="flex grid"></section>
+    </main>
+    <div class="fancy-border-right fancy"></div>
+    <div class="fancy"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

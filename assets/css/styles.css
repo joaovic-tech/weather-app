@@ -185,17 +185,11 @@ main {
   padding: 2rem;
 }
 
-form {
-  width: 100%;
-}
-
 .style-input {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  max-width: 400px;
   height: 4rem;
   margin: 0 auto;
   border-radius: 0.2rem;
@@ -227,6 +221,7 @@ form {
 }
 
 .style-input input {
+  width: 100%;
   outline: none;
   border: none;
   background: transparent;
@@ -260,8 +255,9 @@ form {
 }
 
 #container {
+  width: 100%;
   position: absolute;
-  margin: 2rem;
+  margin: 2rem 0;
   gap: 2rem;
   border-radius: 50%;
   background: var(--color-transparent);
@@ -333,5 +329,17 @@ form {
   }
   100% {
     background-position: 100% 0;
+  }
+}
+
+@media (max-width: 320px) {
+  main,
+  #cont-in,
+  form,
+  .style-input {
+    width: 100%;
+  }
+  #container {
+    background: transparent;
   }
 }

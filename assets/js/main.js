@@ -103,20 +103,29 @@ async function getWeather(city) {
   const apiKey = '5eac9af907fedcc0bc548d41aaafbb28';
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=pt_br&units=metric&appid=${apiKey}`;
 
-  await axios(url)
-    .then(response => response.data)
-    .then(data => {
-      const { main, name, sys, weather } = data;
-      const { feels_like, temp, temp_min, temp_max } = main;
-      const country = sys.country;
-      const icon = changeIcon(weather[0].icon);
-      const temperature = `${temp.toFixed(0)}°`;
-      const subTemperature = `${temp_max.toFixed(0)}°/${temp_min.toFixed(0)}° RealFeel ${feels_like.toFixed(0)}°`;
-      const climateDescription = weather[0].description;
-      createContainerElements(name, country, temperature, subTemperature, icon, climateDescription);
-      createMessage('Result found 😀', 'msgTrue');
-    })
-    .catch(() => createMessage("Sorry, could not find this result 😩", 'msgFalse'));
+  try {
+    await axios(url)
+      .then(response => response.data)
+      .then(data => {
+        const { main, name, sys, weather } = data;
+        const { feels_like, temp, temp_min, temp_max } = main;
+        const country = sys.country;
+        const icon = changeIcon(weather[0].icon);
+        const temperature = `${temp.toFixed(0)}°`;
+        const subTemperature = `${temp_max.toFixed(0)}°/${temp_min.toFixed(0)}° RealFeel ${feels_like.toFixed(0)}°`;
+        const climateDescription = weather[0].description;
+        createContainerElements(name, country, temperature, subTemperature, icon, climateDescription);
+        createMessage('Result found 😀', 'msgTrue');
+      })
+      .catch(() => {
+        createMessage(`Sorry, result not found 😩`, 'msgFalse');
+        return container.innerHTML = '';
+      });
+  } catch (error) {
+    console.log(error);
+    createMessage(`Sorry, result not found 😩`, 'msgFalse');
+    return container.innerHTML = '';
+  }
 }
 
 function saveCity(city) { localStorage.setItem('city', city); }
